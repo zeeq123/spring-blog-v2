@@ -5,6 +5,7 @@ import jakarta.persistence.Query;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.web.bind.annotation.PostMapping;
 
 import java.util.List;
 
@@ -12,6 +13,7 @@ import java.util.List;
 @Repository
 public class BoardNativeRepository {
     private final EntityManager em;
+
 
     public Board findById(int id){
         Query query = em.createNativeQuery("select * from board_tb where id = ?", Board.class);
@@ -32,6 +34,14 @@ public class BoardNativeRepository {
         query.setParameter(2, content);
         query.setParameter(3, username);
 
+        query.executeUpdate();
+    }
+
+    @Transactional
+    public void deleteById(int id){
+        Query query =
+                em.createNativeQuery("delete from board_tb where id = ?");
+        query.setParameter(1, id);
         query.executeUpdate();
     }
 }

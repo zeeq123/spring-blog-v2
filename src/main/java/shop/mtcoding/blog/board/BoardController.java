@@ -14,6 +14,13 @@ import java.util.List;
 public class BoardController {
     private final BoardNativeRepository boardNativeRepository;
 
+    @PostMapping("/board/{id}/delete")
+    public String delete(@PathVariable int id){
+        boardNativeRepository.deleteById(id);
+
+        return "redirect:/";
+    }
+
     @PostMapping("/board/save")
     public String save(String title, String content,String username){
         boardNativeRepository.save(title, content, username);

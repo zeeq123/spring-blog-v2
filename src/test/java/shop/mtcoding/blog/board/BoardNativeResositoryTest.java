@@ -18,6 +18,20 @@ public class BoardNativeResositoryTest {
     private BoardNativeRepository boardNativeRepository;
 
     @Test
+    public void deleteByIdTest(){
+        // given
+        int id = 1;
+
+        // when
+        boardNativeRepository.deleteById(id);
+
+        // then
+        List<Board> boardList = boardNativeRepository.findAll();
+        assertThat(boardList.size()).isEqualTo(3);
+
+    }
+
+    @Test
     public void findByIdTest(){
         // given
         int id = 1;
