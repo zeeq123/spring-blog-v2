@@ -18,7 +18,24 @@ public class BoardNativeResositoryTest {
     private BoardNativeRepository boardNativeRepository;
 
     @Test
-    public void deleteByIdTest(){
+    public void updateById_test(){
+        // given
+        int id = 1;
+        String title = "제목 수정1";
+        String content = "내용 수정1";
+        String username = "bori";
+
+        // when
+        boardNativeRepository.updateById(id, title, content, username);
+
+        // then
+        Board board = boardNativeRepository.findById(1);
+        System.out.println("board : " + board);
+        assertThat(board.getUsername()).isEqualTo("bori");
+    }
+
+    @Test
+    public void deleteById_test(){
         // given
         int id = 1;
 
@@ -32,7 +49,7 @@ public class BoardNativeResositoryTest {
     }
 
     @Test
-    public void findByIdTest(){
+    public void findById_test(){
         // given
         int id = 1;
         // when
@@ -44,7 +61,7 @@ public class BoardNativeResositoryTest {
     }
 
     @Test
-    public void findAllTest(){
+    public void findAll_test(){
         // given
 
         // when
