@@ -1,5 +1,6 @@
 package shop.mtcoding.blog.board;
 
+import jakarta.persistence.EntityManager;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
@@ -14,6 +15,23 @@ import static org.assertj.core.api.Assertions.assertThat;
 public class BoardPersistRepositoryTest {
     @Autowired // DI
     private BoardPersistRepository boardPersistRepository;
+    @Autowired
+    private EntityManager em;
+
+    @Test
+    public void updateById_test(){
+        //given
+        int id = 1;
+        String title = "제목수정1";
+
+        // when
+        Board board = boardPersistRepository.findById(id);
+        board.setTitle(title);
+
+        // then
+        em.flush();
+
+    }
 
     @Test
     public void deleteByIdV2_test(){

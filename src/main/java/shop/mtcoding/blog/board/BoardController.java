@@ -16,14 +16,14 @@ public class BoardController {
     private final BoardPersistRepository boardPersistRepository;
 
     @PostMapping("/board/{id}/update")
-    public String update(@PathVariable int id, String title, String content, String username){
-        boardNativeRepository.updateById(id, title, content, username);
+    public String update(@PathVariable int id, BoardRequest.UpdateDTO reqDTO){
+        boardPersistRepository.updateById(id, reqDTO);
         return "redirect:/board/" + id;
     }
 
     @GetMapping("/board/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request){
-        Board board = boardNativeRepository.findById(id);
+        Board board = boardPersistRepository.findById(id);
         request.setAttribute("board", board);
         return "board/update-form";
     }

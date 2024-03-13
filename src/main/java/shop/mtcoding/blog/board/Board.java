@@ -1,9 +1,7 @@
 package shop.mtcoding.blog.board;
 
 import jakarta.persistence.*;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.ToString;
+import lombok.*;
 import org.hibernate.annotations.CreationTimestamp;
 import shop.mtcoding.blog.util.MyDateUtil;
 
@@ -11,7 +9,7 @@ import java.sql.Timestamp;
 
 @ToString
 @NoArgsConstructor
-@Getter
+@Data
 @Table(name = "board_tb")
 @Entity
 public class Board {
@@ -33,5 +31,11 @@ public class Board {
         this.title = title;
         this.content = content;
         this.username = username;
+    }
+
+    public void update(BoardRequest.UpdateDTO reqDTO){
+        this.title = reqDTO.getTitle();
+        this.content = reqDTO.getContent();
+        this.username = reqDTO.getUsername();
     }
 }

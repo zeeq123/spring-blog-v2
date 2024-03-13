@@ -15,6 +15,12 @@ public class BoardPersistRepository {
     private final EntityManager em;
 
     @Transactional
+    public void updateById(int id, BoardRequest.UpdateDTO reqDTO){
+        Board board = findById(id);
+        board.update(reqDTO);
+    } // 더티 체킹
+
+    @Transactional
     public void deleteByIdV2(int id){
         Board board = findById(id);
         em.remove(board);
