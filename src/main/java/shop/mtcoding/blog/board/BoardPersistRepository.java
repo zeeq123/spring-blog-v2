@@ -14,6 +14,11 @@ import java.util.List;
 public class BoardPersistRepository {
     private final EntityManager em;
 
+    public List<Board> findAll(){
+        Query query = em.createQuery("select b from Board b order by b.id desc", Board.class);
+        return query.getResultList();
+    }
+
     @Transactional
     public Board save(Board board){
         // 비영속 객체
