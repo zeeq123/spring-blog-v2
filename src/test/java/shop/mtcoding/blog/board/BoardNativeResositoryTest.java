@@ -34,6 +34,7 @@ public class BoardNativeResositoryTest {
         assertThat(board.getUsername()).isEqualTo("bori");
     }
 
+
     @Test
     public void deleteById_test(){
         // given

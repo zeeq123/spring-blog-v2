@@ -16,6 +16,32 @@ public class BoardPersistRepositoryTest {
     private BoardPersistRepository boardPersistRepository;
 
     @Test
+    public void deleteByIdV2_test(){
+        // given
+        int id = 1;
+
+        // when
+        boardPersistRepository.deleteByIdV2(id);
+
+        // then
+        List<Board> boardList = boardPersistRepository.findAll();
+        assertThat(boardList.size()).isEqualTo(3);
+
+    }
+
+    @Test
+    public void deleteById_test(){
+        // given
+        int id = 1;
+
+        // when
+        boardPersistRepository.deleteById(id);
+        // then
+        List<Board> boardList = boardPersistRepository.findAll();
+        assertThat(boardList.size()).isEqualTo(3);
+    }
+
+    @Test
     public void findById_test(){
         // given
         int id = 1;
