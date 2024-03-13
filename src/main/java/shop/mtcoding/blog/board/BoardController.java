@@ -12,41 +12,29 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
-    private final BoardNativeRepository boardNativeRepository;
-    private final BoardPersistRepository boardPersistRepository;
 
     @PostMapping("/board/{id}/update")
-    public String update(@PathVariable int id, BoardRequest.UpdateDTO reqDTO){
-        boardPersistRepository.updateById(id, reqDTO);
+    public String update(@PathVariable int id){
         return "redirect:/board/" + id;
     }
 
     @GetMapping("/board/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request){
-        Board board = boardPersistRepository.findById(id);
-        request.setAttribute("board", board);
         return "board/update-form";
     }
 
     @PostMapping("/board/{id}/delete")
     public String delete(@PathVariable int id){
-        boardPersistRepository.deleteById(id);
-
         return "redirect:/";
     }
 
     @PostMapping("/board/save")
-    public String save(BoardRequest.SaveDTO reqDTO){
-        boardPersistRepository.save(reqDTO.toEntity());
+    public String save(){
         return "redirect:/";
     }
 
     @GetMapping({ "/", "/board" })
     public String index(HttpServletRequest request) {
-
-        List<Board> boardList = boardPersistRepository.findAll();
-        request.setAttribute("boardList", boardList);
-
         return "index";
     }
 
@@ -57,9 +45,6 @@ public class BoardController {
 
     @GetMapping("/board/{id}")
     public String detail(@PathVariable Integer id, HttpServletRequest request) {
-        Board board = boardPersistRepository.findById(id);
-        request.setAttribute("board", board);
-
         return "board/detail";
     }
 }
