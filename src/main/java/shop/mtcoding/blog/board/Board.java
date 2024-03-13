@@ -3,11 +3,13 @@ package shop.mtcoding.blog.board;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
+import lombok.ToString;
 import org.hibernate.annotations.CreationTimestamp;
 import shop.mtcoding.blog.util.MyDateUtil;
 
 import java.sql.Timestamp;
 
+@ToString
 @NoArgsConstructor
 @Getter
 @Table(name = "board_tb")
