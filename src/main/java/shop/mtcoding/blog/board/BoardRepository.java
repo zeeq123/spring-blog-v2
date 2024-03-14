@@ -28,7 +28,6 @@ public class BoardRepository {
             }
         }
         List<User> userList = em.createQuery(q2 , User.class).getResultList();
-
         for (Board board : boardList){
             for (int i = 0; i < userList.size(); i++) {
                 User user = userList.get(i);
