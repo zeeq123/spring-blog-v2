@@ -34,4 +34,6 @@ public class Board {
         this.user = user;
         this.createdAt = createdAt;
     }
+
+
 }

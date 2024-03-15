@@ -18,12 +18,15 @@ public class BoardController {
     private final HttpSession session;
 
     @PostMapping("/board/{id}/update")
-    public String update(@PathVariable int id){
+    public String update(@PathVariable int id, BoardRequest.UpdateDTO reqDTO){
+        boardRepository.updateById(id, reqDTO.getTitle(), reqDTO.getContent());
         return "redirect:/board/" + id;
     }
 
     @GetMapping("/board/{id}/update-form")
     public String updateForm(@PathVariable Integer id, HttpServletRequest request){
+        Board board = boardRepository.findById(id);
+        request.setAttribute("board", board);
         return "board/update-form";
     }
 
