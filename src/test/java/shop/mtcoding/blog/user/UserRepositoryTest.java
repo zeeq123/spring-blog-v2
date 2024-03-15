@@ -20,7 +20,7 @@ public class UserRepositoryTest {
         reqDTO.setPassword("1234");
 
         // when
-        User user = userRepository.findByUsernameAndPassword(reqDTO);
+        User user = userRepository.findByUsernameAndPassword(reqDTO.getUsername(), reqDTO.getPassword());
 
         // then
         Assertions.assertThat(user.getUsername()).isEqualTo("ssar");
