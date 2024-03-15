@@ -13,6 +13,18 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
+    public void findById_test() {
+        // given
+        int id = 1;
+
+        // when
+        userRepository.findById(id);
+
+        // then
+
+    }
+
+    @Test
     public void findByUsername_test() {
         // given
         UserRequest.LoginDTO reqDTO = new UserRequest.LoginDTO();
