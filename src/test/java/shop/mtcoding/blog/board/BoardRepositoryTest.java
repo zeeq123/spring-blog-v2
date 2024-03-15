@@ -16,6 +16,18 @@ public class BoardRepositoryTest {
     private BoardRepository boardRepository;
 
     @Test
+    public void deleteById_test() {
+        // given
+        int id = 1;
+
+        // when
+        boardRepository.deleteById(id); // delete query 발동함
+
+        // then
+        System.out.println(boardRepository.findAll().size());
+    }
+
+    @Test
     public void findAllV2_test() {
         List<Board> boardList = boardRepository.findAllV2();
         System.out.println(boardList);
