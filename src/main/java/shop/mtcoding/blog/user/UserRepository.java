@@ -39,6 +39,5 @@ public class UserRepository {
         query.setParameter("password", password);
 
         return (User) query.getSingleResult();
-
     }
 }
