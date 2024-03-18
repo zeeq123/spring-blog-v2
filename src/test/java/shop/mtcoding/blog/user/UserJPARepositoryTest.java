@@ -60,7 +60,7 @@ public class UserJPARepositoryTest {
     }
 
     @Test
-    public void _test() {
+    public void findAll_test() {
         // given
 
         // when
