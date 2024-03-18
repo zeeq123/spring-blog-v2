@@ -17,7 +17,6 @@ import java.util.List;
 @RequiredArgsConstructor
 @Controller
 public class BoardController {
-    private final BoardRepository boardRepository;
     private final BoardService boardService;
     private final HttpSession session;
 
