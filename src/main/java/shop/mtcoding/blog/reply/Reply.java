@@ -2,6 +2,7 @@ package shop.mtcoding.blog.reply;
 
 import jakarta.persistence.*;
 import lombok.Builder;
+import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.CreationTimestamp;
 import shop.mtcoding.blog.board.Board;
@@ -10,6 +11,7 @@ import shop.mtcoding.blog.user.User;
 import java.sql.Timestamp;
 
 @NoArgsConstructor
+@Data
 @Table(name = "reply_tb")
 @Entity
 public class Reply {
@@ -24,6 +26,9 @@ public class Reply {
     private Board board;
     @CreationTimestamp
     private Timestamp createdAt;
+
+    @Transient
+    private boolean isReplyOwner;
 
     @Builder
     public Reply(Integer id, String comment, User user, Board board, Timestamp createdAt) {
