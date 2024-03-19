@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import shop.mtcoding.blog.user.User;
 
+import java.util.List;
 import java.util.Optional;
 
 @DataJpaTest
@@ -16,6 +17,17 @@ public class BoardJPARepositoryTest {
 
     @Autowired
     private EntityManager em;
+
+    @Test
+    public void findByIdJoinUserAndReplies_test() {
+        // given
+        int id = 4;
+
+        // when
+        Board board = boardJPARepository.findByIdJoinUserAndReplies(id).get();
+
+        // then
+    }
 
     @Test
     public void deleteById_test() {
