@@ -20,18 +20,14 @@ public class BoardController {
     private final BoardService boardService;
     private final HttpSession session;
 
+    // TODO: 글목록 조회 API 필요
+    // TODO: 글 상세보기 API 필요
+    // TODO: 글조회 API 필요
     @PostMapping("/board/{id}/update")
     public String update(@PathVariable int id, BoardRequest.UpdateDTO reqDTO){
         User sessionUser = (User) session.getAttribute("sessionUser");
         boardService.글수정(id, sessionUser.getId(), reqDTO);
         return "redirect:/board/" + id;
-    }
-
-    @GetMapping("/board/{id}/update-form")
-    public String updateForm(@PathVariable Integer id, HttpServletRequest request) {
-        Board board = boardService.글조회(id);
-        request.setAttribute("board", board);
-        return "board/update-form";
     }
 
     @PostMapping("/board/{id}/delete")
@@ -49,25 +45,5 @@ public class BoardController {
         return "redirect:/";
     }
 
-    @GetMapping({ "/", "/board" })
-    public String index(HttpServletRequest request) {
-        List<Board> boardList = boardService.글목록조회();
-        request.setAttribute("boardList", boardList);
 
-        return "index";
-    }
-
-    @GetMapping("/board/save-form")
-    public String saveForm() {
-        return "board/save-form";
-    }
-
-    @GetMapping("/board/{id}")
-    public String detail(@PathVariable Integer id, HttpServletRequest request) {
-        User sessionUser = (User) session.getAttribute("sessionUser");
-        Board board = boardService.글상세보기(id, sessionUser);
-
-        request.setAttribute("board", board);
-        return "board/detail";
-    }
 }
