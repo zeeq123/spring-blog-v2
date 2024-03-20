@@ -18,8 +18,8 @@ public class BoardController {
 
     @GetMapping("/")
     public ResponseEntity<?> main(){
-        List<Board> boardList = boardService.글목록조회();
-        return ResponseEntity.ok(boardList);
+        List<BoardResponse.MainDTO> respDTO = boardService.글목록조회();
+        return ResponseEntity.ok(new ApiUtil<>(respDTO));
     }
 
     @GetMapping("/apiboards/{id}/detail")
