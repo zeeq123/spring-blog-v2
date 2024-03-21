@@ -2,6 +2,7 @@ package shop.mtcoding.blog.board;
 
 import jakarta.persistence.FetchType;
 import jakarta.persistence.ManyToOne;
+import lombok.AllArgsConstructor;
 import lombok.Data;
 import org.hibernate.Session;
 import org.hibernate.annotations.CreationTimestamp;
@@ -68,5 +69,15 @@ public class BoardResponse {
             this.id = board.getId();
             this.title = board.getTitle();
         }
+    }
+
+    @AllArgsConstructor
+    @Data
+    public static class CountDTO {
+        private Integer id;
+        private String title;
+        private String content;
+        private Integer userId;
+        private Long replyCount;
     }
 }
